@@ -1,0 +1,57 @@
+# Cloud Run Job manifest — read by the deploy workflow and the Portal.
+#
+# This file is the contract between your job's code and the BC platform.
+# Any field you set here flows into the Cloud Run Job spec, the Cloud
+# Scheduler entry (if `schedule` is set), and the Portal's Jobs tab.
+#
+# Required:
+#   name:              The Cloud Run Job name (lowercase, hyphenated, max 49 chars).
+#                      Defaults to the directory name if omitted.
+#
+# Optional (resources):
+#   cpu:               CPU allocation per task (e.g. "1", "2", "4", "8"). Default: "1".
+#   memory:            Memory per task (e.g. "512Mi", "1Gi", "8Gi", "32Gi"). Default: "1Gi".
+#   max_retries:       Per-task retry count. Default: 1.
+#   task_timeout:      Per-task timeout (e.g. "600s", "1h", "24h"). Default: "1h".
+#   parallelism:       Number of tasks to run in parallel. Default: 1.
+#   task_count:        Total task count (for sharded work). Default: 1.
+#
+# Optional (trigger):
+#   schedule:          Cron expression for Cloud Scheduler (e.g. "0 2 * * *").
+#                      Omit to make the job ad-hoc / workflow-triggered only.
+#                      Schedule timezone defaults to UTC.
+#   schedule_timezone: IANA timezone (e.g. "America/New_York").
+#
+# Optional (env):
+#   env:               Map of environment variables passed to every task.
+#                      Use ${VAR} syntax to reference broadchurch.yaml or
+#                      Vercel-mirrored secrets at deploy time.
+
+name: example-job
+cpu: "1"
+memory: "1Gi"
+max_retries: 1
+task_timeout: "30m"
+parallelism: 1
+task_count: 1
+
+# Uncomment to run on a cron schedule:
+# schedule: "0 2 * * *"        # 2:00 AM daily, UTC
+# schedule_timezone: "UTC"
+
+env:
+  # Standard env injected automatically by the deploy script:
+  # - ORG_ID
+  # - GATEWAY_URL
+  # - QUERY_SERVER_URL
+  # - GOOGLE_CLOUD_PROJECT
+  # - DATABASE_URL          (Cloud SQL — transactional; BC 1.0/2.0 once Cloud SQL is ready)
+  # - BIGQUERY_DATASET      (analytical write target; BC 2.0 only;
+  #                          format: `bc-{slug}.bc_{slug}_analytics`)
+  # - BIGQUERY_LOCATION     (BC 2.0 only)
+  #
+  # See docs/COMPUTE_JOBS.md "Cloud SQL vs BigQuery" for the
+  # decision rubric on which write target to use.
+  #
+  # Add custom env here:
+  EXAMPLE_FLAG: "true"
