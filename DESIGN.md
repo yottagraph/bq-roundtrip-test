@@ -38,6 +38,7 @@ All BigQuery work must go through the portal gateway — we never talk to BigQue
 - `POST {GATEWAY_URL}/api/bigquery/{TENANT_ORG_ID}/query` for SELECTs
 
 Body shape (mutation):
+
 ```
 {
   "sql": "INSERT INTO notes (id, body, created_at) VALUES (@id, @body, @created_at)",
@@ -49,6 +50,7 @@ Body shape (mutation):
   "defaultDataset": "bc_bq_roundtrip_test_analytics"
 }
 ```
+
 Body shape (query): same `sql` + `defaultDataset`, no `params` if not needed. Response has `rows: [...]`.
 
 ## One-time bootstrap
@@ -80,4 +82,4 @@ Project just created. Run `/build_my_app` in Cursor to start building.
 
 ## Modules
 
-*None yet — the agent will populate this as features are built.*
+_None yet — the agent will populate this as features are built._

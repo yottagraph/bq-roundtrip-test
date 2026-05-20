@@ -28,10 +28,10 @@
 #                      Vercel-mirrored secrets at deploy time.
 
 name: example-job
-cpu: "1"
-memory: "1Gi"
+cpu: '1'
+memory: '1Gi'
 max_retries: 1
-task_timeout: "30m"
+task_timeout: '30m'
 parallelism: 1
 task_count: 1
 
@@ -40,18 +40,18 @@ task_count: 1
 # schedule_timezone: "UTC"
 
 env:
-  # Standard env injected automatically by the deploy script:
-  # - ORG_ID
-  # - GATEWAY_URL
-  # - QUERY_SERVER_URL
-  # - GOOGLE_CLOUD_PROJECT
-  # - DATABASE_URL          (Cloud SQL — transactional; BC 1.0/2.0 once Cloud SQL is ready)
-  # - BIGQUERY_DATASET      (analytical write target; BC 2.0 only;
-  #                          format: `bc-{slug}.bc_{slug}_analytics`)
-  # - BIGQUERY_LOCATION     (BC 2.0 only)
-  #
-  # See docs/COMPUTE_JOBS.md "Cloud SQL vs BigQuery" for the
-  # decision rubric on which write target to use.
-  #
-  # Add custom env here:
-  EXAMPLE_FLAG: "true"
+    # Standard env injected automatically by the deploy script:
+    # - ORG_ID
+    # - GATEWAY_URL
+    # - QUERY_SERVER_URL
+    # - GOOGLE_CLOUD_PROJECT
+    # - DATABASE_URL          (Cloud SQL — transactional; BC 1.0/2.0 once Cloud SQL is ready)
+    # - BIGQUERY_DATASET      (analytical write target; BC 2.0 only;
+    #                          format: `bc-{slug}.bc_{slug}_analytics`)
+    # - BIGQUERY_LOCATION     (BC 2.0 only)
+    #
+    # See docs/COMPUTE_JOBS.md "Cloud SQL vs BigQuery" for the
+    # decision rubric on which write target to use.
+    #
+    # Add custom env here:
+    EXAMPLE_FLAG: 'true'
