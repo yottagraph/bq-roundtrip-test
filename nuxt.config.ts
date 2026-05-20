@@ -168,6 +168,9 @@ export default defineNuxtConfig({
             tenantOrgId: bcYaml.tenantOrgId,
             agents: '',
 
+            // BigQuery feature flag (overridden by NUXT_PUBLIC_BIGQUERY_ENABLED)
+            bigqueryEnabled: '',
+
             // User Configuration — bypass Auth0 in dev mode for provisioned projects
             userName: bcYaml.found && process.env.NODE_ENV !== 'production' ? 'dev-user' : '',
 

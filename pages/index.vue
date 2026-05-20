@@ -4,7 +4,18 @@
             <div class="hero-section">
                 <img src="/LL-logo-full-wht.svg" alt="Lovelace" class="hero-logo" />
                 <h1 class="hero-title">{{ appName || 'Welcome to Aether' }}</h1>
-                <p class="hero-subtitle">Your AI-powered workspace is ready.</p>
+                <p class="hero-subtitle">
+                    A minimal Aether app that round-trips notes through BigQuery.
+                </p>
+                <v-btn
+                    color="primary"
+                    size="large"
+                    to="/notes"
+                    prepend-icon="mdi-note-text-outline"
+                    class="mt-4"
+                >
+                    Open notes
+                </v-btn>
             </div>
 
             <div class="getting-started">
